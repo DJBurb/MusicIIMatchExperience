@@ -1,28 +1,28 @@
-import { create, all, Fraction, transposeDependencies } from 'mathjs';
-import { MixedNumber } from "~/models/fractionModels/mixedNumber.model";
-import {rando} from '@nastyox/rando.js';
+import { create, all, Fraction } from 'mathjs';
 import { Fraction2 } from '../../models/fractionModels/fraction.model';
-import { MixedNumberImproperFractionProblem } from '../../models/fractionModels/mixedNumberToImproperFractionProblem';
 import { FractionProblemConfig } from '../../models/fractionModels/fractionProblemConfig.model';
-import { GeneratedFraction } from '~/models/fractionModels/generatedFraction.model';
+import { GeneratedFraction } from 'src/app/models/fractionModels/generatedFraction.model';
+
+
+
 
 export class HelperService{
     math = create(all, {});
-    
-    /// This is a  randomized decision maker.. it will send back a random 0 or 1, to 
+
+    /// This is a  randomized decision maker.. it will send back a random 0 or 1, to
     /// be used to make random decision in logic
     getLogicDecision(): number{
-        return rando(0,10) % 2 === 0 ? 0 : 1;
+        return this.getRandomInt(0,10) % 2 === 0 ? 0 : 1;
     }
 
-    // gets a random number that is not the seed number and lower than the maxAnswerChoice number 
+    // gets a random number that is not the seed number and lower than the maxAnswerChoice number
     getRandomAnswerNumber(seed: number, maxAnswerChoice: number=10): number{
         let choiceDirection = this.getLogicDecision();
         if(choiceDirection===0){
-            return seed - rando(0,seed);
+            return seed -  this.getRandomInt(0,seed);
         }
         else{
-            return seed + rando(seed, maxAnswerChoice)
+            return seed +  this.getRandomInt(seed, maxAnswerChoice)
         }
     }
 
@@ -35,7 +35,7 @@ export class HelperService{
             return [i, 0, 0];
         }
         numerator -= i * denominator;
-        return [i, numerator, denominator]; 
+        return [i, numerator, denominator];
     }
 
     getTwoRandomFractions(fractionProblemConfig: FractionProblemConfig):GeneratedFraction{
@@ -43,13 +43,13 @@ export class HelperService{
         let firstFraction: Fraction2= {numerator: null, denominator: null, wholeNumber: null, isNegative: false};
         let secondFraction: Fraction2= {numerator: null, denominator: null, wholeNumber: null, isNegative: false};
 
-        firstFraction.denominator = rando(1, fractionProblemConfig.maxDenominator);
-        secondFraction.denominator = fractionProblemConfig.useSameDenominator ? 
-                                     firstFraction.denominator : 
-                                     secondFraction.denominator = rando(1, fractionProblemConfig.maxDenominator);
-        
-        firstFraction.numerator = rando(0, fractionProblemConfig.maxNumerator);
-        secondFraction.numerator = rando(0, fractionProblemConfig.maxNumerator);
+        firstFraction.denominator =  this.getRandomInt(1, fractionProblemConfig.maxDenominator);
+        secondFraction.denominator = fractionProblemConfig.useSameDenominator ?
+                                     firstFraction.denominator :
+                                     secondFraction.denominator =  this.getRandomInt(1, fractionProblemConfig.maxDenominator);
+
+        firstFraction.numerator =  this.getRandomInt(1, fractionProblemConfig.maxNumerator);
+        secondFraction.numerator =  this.getRandomInt(1, fractionProblemConfig.maxNumerator);
 
         if(!fractionProblemConfig.allowNegatives){
             const comparableFraction1: Fraction = {d: Number(firstFraction.denominator), n: Number(firstFraction.numerator), s:1};
@@ -60,18 +60,18 @@ export class HelperService{
                 secondFraction=tempFraction;
             }
         }
-      
+
         firstFraction.isNegative = fractionProblemConfig.allowNegatives && this.getLogicDecision() === 1;
         secondFraction.isNegative = fractionProblemConfig.allowNegatives && this.getLogicDecision() === 1;
 
 
-        const calculationFirstFraction : Fraction = {n: Number(firstFraction.numerator), 
-            d: Number(firstFraction.denominator), 
+        const calculationFirstFraction : Fraction = {n: Number(firstFraction.numerator),
+            d: Number(firstFraction.denominator),
             s: firstFraction.isNegative? -1:1}
-        const calculationSecondFraction : Fraction = {n: Number(secondFraction.numerator), 
-                d: Number(secondFraction.denominator), 
+        const calculationSecondFraction : Fraction = {n: Number(secondFraction.numerator),
+                d: Number(secondFraction.denominator),
                 s: secondFraction.isNegative? -1:1}
-        
+
         return {
             firstFraction: calculationFirstFraction,
             secondFraction: calculationSecondFraction,
@@ -85,5 +85,11 @@ export class HelperService{
             return Math.trunc(numerator/denominator);
         }
         return null;
+    }
+
+    getRandomInt(min:number, max:number) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
     }
 }

@@ -1,8 +1,10 @@
+import { Injectable } from "@angular/core";
 import { all, create } from "mathjs";
-import { NumberAnswerKey } from "~/models/answerKey.model";
+import { NumberAnswerKey } from "../../models/answerKey.model";
 import { HelperService } from "../shared/helper.service";
 import { LetterAnswerService } from "../shared/letterAnswer.service";
 
+@Injectable()
 export class BasicAnswerKeyService
 {
     letterAnswerService = new LetterAnswerService();
@@ -30,11 +32,11 @@ export class BasicAnswerKeyService
             }
           });
 
-          
+
 
           return {
             answers: currentAnswers,
-            letterAnswer: this.letterAnswerService.getLetterAnswer(correctAnswerIndex) 
+            letterAnswer: this.letterAnswerService.getLetterAnswer(correctAnswerIndex)
           };
     }
 

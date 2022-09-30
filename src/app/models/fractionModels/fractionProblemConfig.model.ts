@@ -5,5 +5,5 @@ export class FractionProblemConfig{
     maxDenominator: number = 10;
     maxNumerator: number = 10;
     useSameDenominator: boolean = false;
-
+    numberOfProblems: number = 10;
 }

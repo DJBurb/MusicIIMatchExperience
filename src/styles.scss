@@ -1,0 +1,16 @@
+/* You can add global styles to this file, and also import other style files */
+body{
+  background-color: rgba(0, 255, 255, 0.783);
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.chalkboardBoarder .mat-dialog-container{
+  background-color: saddlebrown ;
+}
+
+@font-face {
+  font-family: "Chawp";
+  src: local("Chawp"), url(./assets/fonts/chawp.ttf) format("truetype");
+}

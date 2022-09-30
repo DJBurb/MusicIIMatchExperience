@@ -1,0 +1,87 @@
+$size-350: 350px;
+$size-500:  500px;
+$size-700:  700px;
+$medium: 900px;
+
+
+.chalkboardBody{
+  height: 400px;
+  width: 650px;
+  background-color: black;
+  font-family: "Chawp", Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  color: white;
+}
+
+.divisionSign{
+  font-family: 'sans-serif';
+}
+.choice-result{
+  font-size: 59px;
+  text-align: center;
+  margin-top: 3%;
+  height: 72px;
+  .check-mark{
+    color: green;
+  }
+  .error-mark{
+    color: red;
+  }
+}
+
+.correctAnswer{
+  color: green;
+}
+.beginButton{
+
+  button{
+    background-color:green;
+    margin-right: 5%;
+  }
+  width: 100%;
+}
+
+.individualChoice{
+  cursor: pointer;
+}
+
+.answerChoices{
+  display: flex;
+  text-align: center;
+  //justify-content: center;
+  margin-top: 7%;
+  justify-content: space-evenly;
+}
+
+.problemSentence{
+  text-align: center;
+  font-size: 36px;
+  margin-top: 6%;
+}
+
+.question{
+  color:white;
+  font-family: "Chawp", Arial, Helvetica, sans-serif;
+  margin-top: 3%;
+  margin-left: 5%;
+}
+
+.problemType{
+  text-align: center;
+    margin-top: 21%;
+    margin-bottom: 10%;
+    font-size: 90px;
+    @media screen and (max-width: $size-700) {
+      font-size: 72px;
+      margin-bottom: 29%;
+    }
+    @media screen and (max-width: $size-500) {
+      font-size: 37px;
+      margin-bottom: 29%;
+    }
+    @media screen and (max-width: $size-350) {
+      font-size: 30px;
+      margin-bottom: 60%;
+    }
+}
+

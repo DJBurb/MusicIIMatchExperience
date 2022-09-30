@@ -1,18 +1,12 @@
-import Phaser from 'phaser'
+import { enableProdMode } from '@angular/core';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-import HelloWorldScene from './scenes/HelloWorldScene'
+import { AppModule } from './app/app.module';
+import { environment } from './environments/environment';
 
-const config: Phaser.Types.Core.GameConfig = {
-	type: Phaser.AUTO,
-	width: 800,
-	height: 600,
-	physics: {
-		default: 'arcade',
-		arcade: {
-			gravity: { y: 200 }
-		}
-	},
-	scene: [HelloWorldScene]
+if (environment.production) {
+  enableProdMode();
 }
 
-export default new Phaser.Game(config)
+platformBrowserDynamic().bootstrapModule(AppModule)
+  .catch(err => console.error(err));
