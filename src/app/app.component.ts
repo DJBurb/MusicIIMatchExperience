@@ -13,18 +13,11 @@ export class AppComponent implements AfterViewInit, OnInit {
 
   title = 'Music2MathExperience';
   fractionProblemConfig: FractionProblemConfig;
-  constructor(private fractionService: FractionService){
+  constructor(){
 
   }
   ngOnInit(): void {
-    this.fractionProblemConfig={
-      maxWholeNumber: 10,
-      allowNegatives: false,
-      maxDenominator: 10,
-      useSameDenominator: true,
-      maxNumerator: 20,
-      numberOfProblems: 10
-    }
+
   }
   ngAfterViewInit(): void {
 

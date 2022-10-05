@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ProblemType } from '../enums/problemType.enum';
 
 @Component({
   selector: 'app-menu',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  goToScene(problemsToNavigateTo: string){
+    if(problemsToNavigateTo==='fractions'){
+      this.router.navigate(['scene', {
+        id: 1
+      }]);
+    }
+
   }
 
 }
