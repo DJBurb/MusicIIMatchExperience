@@ -22,8 +22,7 @@ export class SceneComponent implements AfterViewInit, OnInit{
    }
   ngOnInit(): void {
 
-    const test = this.route.snapshot.paramMap.get('id');
-    console.log(test);
+    //const test = this.route.snapshot.paramMap.get('id');
     this.fractionProblemConfig={maxWholeNumber: 10,
       allowNegatives: false,
       maxDenominator: 10,
@@ -31,6 +30,8 @@ export class SceneComponent implements AfterViewInit, OnInit{
       maxNumerator: 20,
       numberOfProblems: 10
     }
+
+    this.startLesson();
   }
 
 

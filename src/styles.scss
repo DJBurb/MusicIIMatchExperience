@@ -14,3 +14,24 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   font-family: "Chawp";
   src: local("Chawp"), url(./assets/fonts/chawp.ttf) format("truetype");
 }
+
+.form-container{
+  display: block;
+  max-width: 300px;
+  margin: auto;
+  background-color: #eceff1;
+  padding: 48px;
+  border-radius: 16px;
+}
+.form-container .mat-form-field{
+  width: 100%;
+}
+
+.center{
+  display: flex;
+  justify-content: center;
+}
+
+.margin-top-16{
+  margin-top: 16px;
+}
