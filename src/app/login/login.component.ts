@@ -15,13 +15,13 @@ export class LoginComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', Validators.required),
   })
-  constructor(private authenticationService:AuthenticationService, private router: Router,
+  constructor(public authenticationService:AuthenticationService, private router: Router,
     private toast:HotToastService) { 
 
   }
 
   ngOnInit(): void {
-    if(this.authenticationService.isLoggedIn){
+    if(this.authenticationService.isAuthenticated){
       this.router.navigate(['/menu']);
     }
   }

@@ -1,20 +1,22 @@
 import { Injectable } from '@angular/core';
-import { Auth, authState, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from '@angular/fire/auth';
+import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, browserLocalPersistence, User } from '@angular/fire/auth';
 import { from, switchMap } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  isLoggedIn: boolean;
+  userData: User;
 
-  constructor(private auth:Auth) {
-    auth.onAuthStateChanged(res => {
-      if (res && res.uid) {
-        this.isLoggedIn= true;
+  constructor(private auth:Auth, private router: Router) {
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        this.userData = user;
+        localStorage.setItem('m2m_user', JSON.stringify(this.userData));
       } else {
-        this.isLoggedIn=false;
+        localStorage.setItem('m2m_user', JSON.stringify(''));
       }
     });
    }
@@ -31,10 +33,14 @@ export class AuthenticationService {
   }
 
   logout(){
-    return from(this.auth.signOut());
+    return this.auth.signOut().then(() => {
+      localStorage.removeItem('user');
+      this.router.navigate(['/login']);
+    });
   }
 
-  isAuthenticated(){
-    return this.isLoggedIn
+  get isAuthenticated(): boolean {
+    const user = JSON.parse(localStorage.getItem('m2m_user')!);
+    return user !== null && user !=='';
   }
 }
