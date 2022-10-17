@@ -8,17 +8,8 @@ import { Router } from '@angular/router';
 })
 export class AuthenticationService {
 
-  userData: User;
 
   constructor(private auth:Auth, private router: Router) {
-    auth.onAuthStateChanged(user => {
-      if (user) {
-        this.userData = user;
-        localStorage.setItem('m2m_user', JSON.stringify(this.userData));
-      } else {
-        localStorage.setItem('m2m_user', JSON.stringify(''));
-      }
-    });
    }
 
   login(username: string, password: string){
@@ -34,13 +25,13 @@ export class AuthenticationService {
 
   logout(){
     return this.auth.signOut().then(() => {
-      localStorage.removeItem('user');
+      localStorage.removeItem('m2m_userId');
       this.router.navigate(['/login']);
     });
   }
 
   get isAuthenticated(): boolean {
-    const user = JSON.parse(localStorage.getItem('m2m_user')!);
+    const user = JSON.parse(localStorage.getItem('m2m_userId')!);
     return user !== null && user !=='';
   }
 }
