@@ -9,7 +9,7 @@ import { HotToastService } from '@ngneat/hot-toast';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -18,12 +18,6 @@ export class LoginComponent implements OnInit {
   constructor(public authenticationService:AuthenticationService, private router: Router,
     private toast:HotToastService) { 
 
-  }
-
-  ngOnInit(): void {
-    if(this.authenticationService.isAuthenticated){
-      this.router.navigate(['/menu']);
-    }
   }
 
   submit(){
