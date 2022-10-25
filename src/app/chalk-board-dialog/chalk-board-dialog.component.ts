@@ -23,6 +23,7 @@ export class ChalkBoardDialogComponent {
   rightAnswers: number;
   wrongAnswers: number
   finished: boolean;
+  problemsStarted: boolean;
   problemNumber: number = 0;
   problemConfig: FractionProblemConfig;
   splitCurrentProblem: string[];
@@ -30,6 +31,11 @@ export class ChalkBoardDialogComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private fractionService: FractionService,
   private dialogRef: MatDialogRef<ChalkBoardDialogComponent>) {
       this.problemConfig = data.problemConfig as FractionProblemConfig;
+  }
+
+  begin(){
+    this.problemsStarted = true;
+    this.getCurrentProblem();
   }
 
   getCurrentProblem(){

@@ -8,7 +8,7 @@
           Fractions
         </div>
         <div class="beginButton">
-          <button mat-button  (click)="getCurrentProblem()">
+          <button mat-button (click)="begin()">
             Let's Begin
           </button>
         </div>
@@ -50,8 +50,11 @@
         <span class="error-mark" *ngIf="currentResult==='Wrong'">x </span><span *ngIf="currentResult==='Wrong'">Wrong</span>
       </div>
       <div class="beginButton" >
-        <button mat-button  (click)="getCurrentProblem()">
+        <button mat-button *ngIf="!problemsStarted" (click)="getCurrentProblem()">
           Let's Begin
+        </button>
+        <button mat-button *ngIf="problemsStarted && currentResult" (click)="getCurrentProblem()">
+          Next Problem
         </button>
       </div>
   </div>

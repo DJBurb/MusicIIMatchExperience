@@ -25,13 +25,8 @@ export class AuthenticationService {
 
   logout(){
     return this.auth.signOut().then(() => {
-      localStorage.removeItem('m2m_userId');
       this.router.navigate(['/login']);
     });
   }
 
-  get isAuthenticated(): boolean {
-    const user = JSON.parse(localStorage.getItem('m2m_userId')!);
-    return user !== null && user !=='';
-  }
 }
