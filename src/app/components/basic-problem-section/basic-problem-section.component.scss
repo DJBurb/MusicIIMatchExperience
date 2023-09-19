@@ -1,0 +1,12 @@
+.basic-problem{
+  display: flex;
+    font-size: 24px;
+    justify-content: center;
+}
+
+.answer-choice{
+  margin-bottom: 10px;
+  &:hover{
+    cursor: pointer;
+  }
+}
