@@ -19,6 +19,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { RegistrationComponent } from './register/registration.component';
 import { MenuComponent } from './menu/menu.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatButtonModule,
     MatToolbarModule,
     MatInputModule,
+    MatSnackBarModule,
     MatCardModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,

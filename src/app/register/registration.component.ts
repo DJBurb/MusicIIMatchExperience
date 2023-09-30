@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { SnackBarService } from '../services/snack-bar.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -11,22 +13,20 @@ export class RegistrationComponent {
   password: string = '';
   confirmPassword: string = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private snackBarService: SnackBarService, private router:Router) {}
 
   register() {
     if (this.password !== this.confirmPassword) {
-      // Passwords don't match; handle error or display a message.
-      console.error("Passwords don't match");
+      this.snackBarService.showErrorSnackBar("Passwords don't match")
       return;
     }
 
     this.authService.registerWithEmailAndPassword(this.email, this.password)
       .then(() => {
-        // Handle successful registration, e.g., navigate to a confirmation page.
+        this.router.navigateByUrl('menu');
       })
       .catch(error => {
-        // Handle registration error, e.g., display an error message.
-        console.error(error);
+        this.snackBarService.showErrorSnackBar(error);
       });
   }
 }
