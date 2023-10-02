@@ -19,7 +19,12 @@ export class LoginComponent {
     this.authService.loginWithEmailAndPassword(this.email, this.password)
       .then((userCredential) => {
         console.log(userCredential);
-        this.router.navigateByUrl('menu');
+        if(userCredential.user?.emailVerified){
+          this.router.navigateByUrl('menu');
+        }
+        else{
+          this.snackBarService.showErrorSnackBar('Please check your email and verify your account, by clicking the verification link')
+        }
       })
       .catch(error => {
         if(error.code ==="auth/wrong-password" || error.code ==="auth/user-not-found"){

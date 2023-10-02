@@ -1,7 +1,7 @@
 <mat-toolbar>
     <div class="toolbar-container">
         <div>Music 2 Math Experience</div>
-        <div *ngIf="isAuthenticated"><button mat-button color="primary" (click)="logOut()">Log Out</button></div>
+        <div *ngIf="isAuthenticated && !isCurrentPageLogin()"><button mat-button color="primary" (click)="logOut()">Log Out</button></div>
     </div>
 
   </mat-toolbar>

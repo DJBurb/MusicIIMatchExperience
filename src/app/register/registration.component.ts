@@ -11,22 +11,22 @@ import { Router } from '@angular/router';
 export class RegistrationComponent {
   email: string = '';
   password: string = '';
+  firstName: string='';
+  lastName: string ='';
   confirmPassword: string = '';
+  registrationSuccess: boolean;
 
   constructor(private authService: AuthService, private snackBarService: SnackBarService, private router:Router) {}
 
-  register() {
+  async register() {
     if (this.password !== this.confirmPassword) {
       this.snackBarService.showErrorSnackBar("Passwords don't match")
       return;
     }
 
-    this.authService.registerWithEmailAndPassword(this.email, this.password)
-      .then(() => {
-        this.router.navigateByUrl('menu');
-      })
-      .catch(error => {
-        this.snackBarService.showErrorSnackBar(error);
-      });
+    this.registrationSuccess = await this.authService.registerWithEmailAndPassword(this.email, this.password);
+    if(this.registrationSuccess){
+      this.router.navigateByUrl('login');
+    }
   }
 }

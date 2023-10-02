@@ -11,14 +11,18 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 export class AppComponent implements OnInit {
   title = 'Music 2 Math Experience';
   isAuthenticated: boolean;
+  isVerified: boolean;
 
-  constructor(private authService: AuthService, private router: Router, private afAuth: AngularFireAuth){
+  constructor(private router: Router, private afAuth: AngularFireAuth){
 
   }
 
   ngOnInit() {
     this.afAuth.authState.subscribe(user => {
       this.isAuthenticated = !!user;
+      if(this.isAuthenticated && user?.emailVerified){
+        this.isVerified=true;
+      }
     });
   }
   logOut(){
@@ -26,6 +30,10 @@ export class AppComponent implements OnInit {
       this.isAuthenticated = false;
       this.router.navigateByUrl('login');
     });
-    
+  }
+
+  isCurrentPageLogin(): boolean {
+    const currentRoute = this.router.url;
+    return currentRoute.includes('/login');
   }
 }
