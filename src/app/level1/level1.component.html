@@ -1,16 +1,33 @@
-<div class="sprite-animation"></div>
 
-<basic-problem-section (answerResult)="acceptAnswerResult($event)"
-[numberOfQuestions]="numberOfQuestions" (turnOffAnswerResult)="turnOffAnswerResult()"
-(problemsAreDone)="showResults($event)" [problemType]="3">
 
-</basic-problem-section>
+<div class="problems" *ngIf="!makeResultsVisible">
+  <div class="sprite-animation"></div>
 
-<div *ngIf="answerResultState !== 2">
-  <div *ngIf="answerResultState === 1" class="correct-answer answer-result">
-    Correct!
+  <basic-problem-section (answerResult)="acceptAnswerResult($event)"
+  [numberOfQuestions]="numberOfQuestions" (turnOffAnswerResult)="turnOffAnswerResult()"
+  (problemsAreDone)="showResults($event)" [problemType]="3">
+  
+  </basic-problem-section>
+  
+  <div *ngIf="answerResultState !== 2">
+    <div *ngIf="answerResultState === 1" class="correct-answer answer-result">
+      Correct!
+    </div>
+    <div *ngIf="answerResultState === 0" class="wrong-answer answer-result">
+      Wrong
+    </div>
   </div>
-  <div *ngIf="answerResultState === 0" class="wrong-answer answer-result">
-    Wrong
+</div>
+
+
+<div class="results" *ngIf="makeResultsVisible">
+  <div>
+    Results
+  </div>
+  <div>
+    Correct: {{results.numberOfCorrectAnswers}}
+  </div>
+  <div>
+    Wrong: {{results.numberOfWrongAnswers}}
   </div>
 </div>

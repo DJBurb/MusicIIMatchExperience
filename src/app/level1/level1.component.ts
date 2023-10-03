@@ -11,6 +11,8 @@ export class Level1Component implements OnInit {
 
   numberOfQuestions: number = 20;
   answerResultState: number= 2;
+  makeResultsVisible: boolean;
+  results: Results;
   constructor(private router: Router) { }
 
   ngOnInit(): void {
@@ -30,7 +32,8 @@ export class Level1Component implements OnInit {
   }
 
   showResults(results:Results){
-    this.router.navigate(['results'],  { state: { results: results }} );
+    this.results = results;
+    this.makeResultsVisible= true;
   }
 
 }

@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BasicProblemSectionComponent } from './components/basic-problem-section/basic-problem-section.component';
 import { Level1Component } from './level1/level1.component';
-import { ResultsComponent } from './results/results.component';
 import { LoginComponent } from './login/login.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { MatInputModule } from '@angular/material/input';
@@ -26,7 +25,6 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     AppComponent,
     BasicProblemSectionComponent,
     Level1Component,
-    ResultsComponent,
     LoginComponent,
     RegistrationComponent,
     ResetPasswordComponent,
