@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { SnackBarService } from '../services/snack-bar.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reset-password',
@@ -8,17 +10,22 @@ import { AuthService } from '../services/auth.service';
 })
 export class ResetPasswordComponent {
   email: string = '';
+  resetSuccessful: boolean;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private snackBarService: SnackBarService, private router:Router) {}
 
   resetPassword() {
     this.authService.resetPassword(this.email)
       .then(() => {
-        // Handle successful password reset request, e.g., display a confirmation message.
+        this.resetSuccessful = true;
       })
       .catch(error => {
         // Handle password reset error, e.g., display an error message.
-        console.error(error);
+        this.snackBarService.showErrorSnackBar(error.message);
       });
+  }
+
+  goToLogin(){
+    this.router.navigateByUrl('login');
   }
 }
