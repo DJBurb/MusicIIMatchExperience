@@ -5,7 +5,7 @@
 
   <basic-problem-section (answerResult)="acceptAnswerResult($event)"
   [numberOfQuestions]="numberOfQuestions" (turnOffAnswerResult)="turnOffAnswerResult()"
-  (problemsAreDone)="showResults($event)" [problemType]="3">
+  (problemsAreDone)="showResults($event)" [problemType]="subLevel">
   
   </basic-problem-section>
   
@@ -29,5 +29,15 @@
   </div>
   <div>
     Wrong: {{results.numberOfWrongAnswers}}
+  </div>
+
+  <div class="incorrect-message" *ngIf="results.numberOfWrongAnswers > 0">
+    <div>
+      You must get all of the answers correct to receive this instrument.
+    </div>
+    <div>
+      <button mat-flat-button (click)="tryAgain()">Try again?</button>
+      <button mat-flat-button (click)="goToMenu()">Go Back To Main Menu</button>
+    </div>
   </div>
 </div>
