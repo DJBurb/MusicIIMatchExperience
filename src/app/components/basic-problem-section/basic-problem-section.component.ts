@@ -12,6 +12,7 @@ import { CreateProblemService } from 'src/app/services/create-problem.service';
 export class BasicProblemSectionComponent implements OnInit {
 
   problem: Problem;
+  problemText: string;
   @Output() answerResult: EventEmitter<boolean>= new EventEmitter<boolean>();
   @Output() turnOffAnswerResult: EventEmitter<void>= new EventEmitter<void>();
   @Output() problemsAreDone: EventEmitter<Results>= new EventEmitter<Results>();
@@ -46,21 +47,25 @@ export class BasicProblemSectionComponent implements OnInit {
     if(this.currentQuestionNumber<=this.numberOfQuestions){
       switch(this.problemType){
         case ProblemTypes.ADDITION:{
+          this.problemText= "addition";
           this.problem= this.createProblemService.get2WholeNumberAdditionProblem(0,10);
           this.operator="+"
           break;
         }
         case ProblemTypes.SUBTRACTION:{
+          this.problemText= "subtraction";
           this.problem= this.createProblemService.get2WholeNumberSubtractionProblem(0,10);
           this.operator="-"
           break;
         }
         case ProblemTypes.MULTIPLICATION:{
+          this.problemText= "multiplication";
           this.problem= this.createProblemService.get2WholeNumberMultiplicationProblem(0,10);
           this.operator="x"
           break;
         }
         case ProblemTypes.DIVISION:{
+          this.problemText = "division";
           this.problem= this.createProblemService.get2WholeNumberDivisionProblem(0,10);
           this.operator="÷"
           break;
