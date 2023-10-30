@@ -8,6 +8,7 @@ import { MenuComponent } from './menu/menu.component';
 import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
+  { path: '', component: LoginComponent },
   { path: 'level1', component: Level1Component, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'reset-password', component: ResetPasswordComponent },
