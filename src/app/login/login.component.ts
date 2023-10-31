@@ -1,19 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { SnackBarService } from '../services/snack-bar.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularDelegate } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
   email: string = '';
   password: string = '';
+  isLoggedIn: boolean=true;
 
   constructor(private authService: AuthService, private router: Router, 
-    private snackBarService: SnackBarService) {}
+    private snackBarService: SnackBarService, private afAuth: AngularFireAuth) {
+
+    }
+
+  ngOnInit() {
+    this.afAuth.authState.subscribe(user => {
+      this.isLoggedIn = !!user;
+      if(this.isLoggedIn){
+        this.router.navigateByUrl('menu');
+      }
+    });
+  }
 
   login() {
     this.authService.loginWithEmailAndPassword(this.email, this.password)
