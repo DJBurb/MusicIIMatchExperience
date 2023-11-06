@@ -19,6 +19,7 @@ import { RegistrationComponent } from './register/registration.component';
 import { MenuComponent } from './menu/menu.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ResultsComponent } from './results/results.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     LoginComponent,
     RegistrationComponent,
     ResetPasswordComponent,
-    MenuComponent
+    MenuComponent,
+    ResultsComponent
   ],
   imports: [
     BrowserModule,

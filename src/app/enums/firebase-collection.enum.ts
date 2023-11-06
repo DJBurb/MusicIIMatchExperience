@@ -1,3 +1,6 @@
 export enum FirebaseCollections {
-    LEVELS='levels'
+    LEVELS='levels',
+    INSTRUMENTS='instruments',
+    PROBLEM_CONFIGS='problemConfigs',
+    USER_INVENTORY ='userInventory'
   }

@@ -25,6 +25,9 @@ export class Level1Component implements OnInit {
      if(sub){
       this.subLevel = (sub as SubLevel).subLevel;
     }
+    else{
+      this.router.navigateByUrl('menu');
+    }
    }
 
   async ngOnInit(): Promise<void> {
@@ -35,8 +38,6 @@ export class Level1Component implements OnInit {
       const levelData =data as LevelData;
       this.numberOfQuestions = levelData.numberOfQuestions;
       this.instrumentToEarn = levelData.instrumentToEarn;
-      // this.numberOfQuestions= data.numberOfQuestions;
-      // console.log(this.numberOfQuestions);
     });
   }
 
@@ -58,13 +59,8 @@ export class Level1Component implements OnInit {
     this.makeResultsVisible= true;
   }
 
-  tryAgain(){
-    this.makeResultsVisible= false;
-    this.router.navigate(['level1'], { state: { subLevel: this.subLevel } });
-   }
-
-  goToMenu(){
-    this.router.navigateByUrl('menu');
+  toggleResults(showResults: boolean){
+    this.makeResultsVisible=showResults;
   }
 
 }

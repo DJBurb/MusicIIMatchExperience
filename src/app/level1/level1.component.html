@@ -21,23 +21,7 @@
 
 
 <div class="results" *ngIf="makeResultsVisible">
-  <div>
-    Results
-  </div>
-  <div>
-    Correct: {{results.numberOfCorrectAnswers}}
-  </div>
-  <div>
-    Wrong: {{results.numberOfWrongAnswers}}
-  </div>
+  <app-results [levelName]="'level-1'" [subLevel]="subLevel" [results]="results" [instrumentToEarn]="instrumentToEarn" (toggleResults)="toggleResults($event)">
 
-  <div class="incorrect-message">
-    <div *ngIf="results.numberOfWrongAnswers > 0">
-      You must get all of the answers correct to receive this instrument.
-    </div>
-    <div>
-      <button mat-flat-button (click)="tryAgain()">Do It Again?</button>
-      <button mat-flat-button (click)="goToMenu()">Go Back To Main Menu</button>
-    </div>
-  </div>
+  </app-results>
 </div>
