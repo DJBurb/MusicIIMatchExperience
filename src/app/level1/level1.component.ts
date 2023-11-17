@@ -31,13 +31,15 @@ export class Level1Component implements OnInit {
    }
 
   async ngOnInit(): Promise<void> {
-    const documentId = '1-1';
+    const documentId = '1-'+this.subLevel;
     const documentRef = this.firestore.collection(FirebaseCollections.LEVELS).doc(documentId);
 
     documentRef.valueChanges().subscribe((data) => {
-      const levelData =data as LevelData;
-      this.numberOfQuestions = levelData.numberOfQuestions;
-      this.instrumentToEarn = levelData.instrumentToEarn;
+      if(data){
+        const levelData =data as LevelData;
+        this.numberOfQuestions = levelData.numberOfQuestions;
+        this.instrumentToEarn = levelData.instrumentToEarn;
+      }
     });
   }
 

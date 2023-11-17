@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from './services/auth.service';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { MatDialog } from '@angular/material/dialog';
+import { InventoryComponent } from './components/inventory/inventory.component';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,7 @@ export class AppComponent implements OnInit {
   isAuthenticated: boolean;
   isVerified: boolean;
 
-  constructor(private router: Router, private afAuth: AngularFireAuth){
+  constructor(private router: Router, private afAuth: AngularFireAuth, private inventoryDialog: MatDialog){
 
   }
 
@@ -35,5 +36,12 @@ export class AppComponent implements OnInit {
   isCurrentPageLogin(): boolean {
     const currentRoute = this.router.url;
     return currentRoute.includes('/login');
+  }
+
+  showInventory(){
+    this.inventoryDialog.open(InventoryComponent,{
+      width: '700px',
+      height:'700px'
+    });
   }
 }

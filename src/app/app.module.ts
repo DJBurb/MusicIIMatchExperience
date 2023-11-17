@@ -19,7 +19,10 @@ import { RegistrationComponent } from './register/registration.component';
 import { MenuComponent } from './menu/menu.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
 import { ResultsComponent } from './results/results.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import { InventoryComponent } from './components/inventory/inventory.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +33,8 @@ import { ResultsComponent } from './results/results.component';
     RegistrationComponent,
     ResetPasswordComponent,
     MenuComponent,
-    ResultsComponent
+    ResultsComponent,
+    InventoryComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +45,9 @@ import { ResultsComponent } from './results/results.component';
     MatToolbarModule,
     MatInputModule,
     MatSnackBarModule,
+    MatDialogModule,
     MatCardModule,
+    MatTabsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
   ],

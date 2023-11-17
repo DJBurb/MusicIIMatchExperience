@@ -35,21 +35,22 @@ export class ResultsComponent implements AfterViewInit {
           if (doc.exists) {
             const data = doc.data() as UserInventory;
             let instrumentsEarned = data.instrumentsEarned;
-            if(!instrumentsEarned.includes(this.instrumentToEarn)){
-              instrumentsEarned.push(this.instrumentToEarn);
-              this.firestore.collection(FirebaseCollections.USER_INVENTORY).doc(uid).set({})
-              .catch((error) => {
-                console.error('Error writing document: ', error);
-              });
+            if(instrumentsEarned){
+              if(!instrumentsEarned.includes(this.instrumentToEarn)){
+                instrumentsEarned.push(this.instrumentToEarn);
+                this.firestore.collection(FirebaseCollections.USER_INVENTORY).doc(uid).set({
+                    instrumentsEarned: instrumentsEarned
+                })
+                .catch((error) => {
+                  console.error('Error writing document: ', error);
+                });
+              }
+            }
+            else{
+              this.addToEmptyInstruments(uid);
             }
           } else {
-            let userInventory: UserInventory={
-              instrumentsEarned: [this.instrumentToEarn]
-            }
-            this.firestore.collection(FirebaseCollections.USER_INVENTORY).doc(uid).set(userInventory)
-            .catch((error) => {
-              console.error('Error writing document: ', error);
-            });
+            this.addToEmptyInstruments(uid);
           }
         }, (error) => {
           console.error('Error getting document:', error);
@@ -67,6 +68,16 @@ export class ResultsComponent implements AfterViewInit {
 
   goToMenu(){
     this.router.navigateByUrl('menu');
+  }
+
+  addToEmptyInstruments(uid: string){
+    let userInventory: UserInventory={
+      instrumentsEarned: [this.instrumentToEarn]
+    }
+    this.firestore.collection(FirebaseCollections.USER_INVENTORY).doc(uid).set(userInventory)
+    .catch((error) => {
+      console.error('Error writing document: ', error);
+    });
   }
 
 }
