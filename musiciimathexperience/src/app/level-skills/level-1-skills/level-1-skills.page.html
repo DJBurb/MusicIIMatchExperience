@@ -1,0 +1,45 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Select A Skill</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <app-skills-title [level]="'Level 1'"></app-skills-title>
+
+  <div class="skills-container">
+    <div class="column">
+      <div>
+        <ion-button (click)="addOneDigit()">Addition (1 Digit Numbers)</ion-button>
+      </div>
+      <div>
+        <ion-button (click)="addTwoDigitPlusOneDigit()">Addition (2 Digit and 1 Numbers)</ion-button>
+      </div>
+      <div>
+        <ion-button (click)="addTwoDigit()">Addition (2 Digit Numbers)</ion-button>
+      </div>
+      <div>
+        <ion-button>Addition With Objects</ion-button>
+      </div>
+    </div>
+    <div class="column">
+      <div>
+        <ion-button>Find The Missing Number (1 Digit Numbers)</ion-button>
+      </div>
+      <div>
+        <ion-button>Subtraction (1 Digit Numbers)</ion-button>
+      </div>
+      <div>
+        <ion-button>Subtraction (2 Digit and 1 Numbers)</ion-button>
+      </div>
+      <div>
+        <ion-button>Subtraction (2 Digit Numbers)</ion-button>
+      </div>
+    </div>
+    <div class="column">
+      <div>
+        <ion-button>Time</ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>
