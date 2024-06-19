@@ -1,40 +1,39 @@
 
-      <ion-content class="ion-padding container" *ngIf="currentProblemIndex<numberOfProblems">
-        <ion-item lines="none">
-          <ion-label class="problem">
-              {{currentProblem?.problem}}
-          </ion-label>
-        </ion-item>
-        <ion-item lines="none" *ngIf="currentProblemIndex<numberOfProblems">
-          <div class="choices">
-            <div class="choicesColumn1">
-              <div class="answer" (click)="acceptAnswer(currentProblem.choices[0])">
-                A. {{currentProblem?.choices[0]}}
-              </div>
-              <div  class="answer" (click)="acceptAnswer(currentProblem.choices[1])">
-                B. {{currentProblem?.choices[1]}}
-              </div>
-            </div>
+<ion-content class="ion-padding container" *ngIf="currentProblemIndex<numberOfProblems">
+  <ion-item lines="none">
+    <ion-label class="problem">
+        {{currentProblem?.problem}}
+    </ion-label>
+  </ion-item>
+  <ion-item lines="none" *ngIf="currentProblemIndex<numberOfProblems">
+    <div class="choices">
+      <div class="choicesColumn1">
+        <div class="answer" (click)="acceptAnswer(currentProblem.choices[0])">
+          A. {{currentProblem?.choices[0]}}
+        </div>
+        <div  class="answer" (click)="acceptAnswer(currentProblem.choices[1])">
+          B. {{currentProblem?.choices[1]}}
+        </div>
+      </div>
 
-            <div class="choicesColumn2">
-              <div class="answer" (click)="acceptAnswer(currentProblem.choices[2])">
-                C. {{currentProblem?.choices[2]}}
-              </div>
-              <div class="answer" (click)="acceptAnswer(currentProblem.choices[3])">
-                D. {{currentProblem?.choices[3]}}
-              </div>
-            </div>
-          </div>
+      <div class="choicesColumn2">
+        <div class="answer" (click)="acceptAnswer(currentProblem.choices[2])">
+          C. {{currentProblem?.choices[2]}}
+        </div>
+        <div class="answer" (click)="acceptAnswer(currentProblem.choices[3])">
+          D. {{currentProblem?.choices[3]}}
+        </div>
+      </div>
+    </div>
 
 
-        </ion-item>
-        <ion-item class="answer-result" *ngIf="isCorrect || isWrong">
-          <div class="answer-result-correct" *ngIf="isCorrect">
-            Correct!!!!!
-          </div>
-          <div class="answer-result-wrong" *ngIf="isWrong">
-            Wrong
-          </div>
-        </ion-item>
-      </ion-content>
-
+  </ion-item>
+  <ion-item class="answer-result" *ngIf="isCorrect || isWrong">
+    <div class="answer-result-correct" *ngIf="isCorrect">
+      Correct!!!!!
+    </div>
+    <div class="answer-result-wrong" *ngIf="isWrong">
+      Wrong
+    </div>
+  </ion-item>
+</ion-content>

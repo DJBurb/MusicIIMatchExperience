@@ -4,7 +4,7 @@ import { Component, Input, OnInit } from '@angular/core';
   selector: 'app-skills-title',
   templateUrl: './skills-title.component.html',
   styleUrls: ['./skills-title.component.scss'],
-  standalone: true
+  standalone: true,
 })
 export class SkillsTitleComponent  implements OnInit {
   @Input() level: string;

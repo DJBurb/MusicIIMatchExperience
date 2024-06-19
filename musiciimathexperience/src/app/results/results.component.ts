@@ -1,18 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { IonContent, IonLabel, IonItem } from "@ionic/angular/standalone";
+import { IonContent, IonLabel } from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-results',
   templateUrl: './results.component.html',
   styleUrls: ['./results.component.scss'],
   standalone: true,
-  imports: [
-    IonItem,
-    CommonModule,
-    IonContent,
-    IonLabel
-  ]
+  imports: [IonLabel, IonContent, CommonModule]
 })
 export class ResultsComponent implements OnInit{
 

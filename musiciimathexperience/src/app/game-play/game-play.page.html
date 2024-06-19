@@ -1,9 +1,8 @@
 
 <div class="game-play-container">
-      <app-math [mathType]="myParams.mathType" [minAddend]="myParams.minAddend"
-      [maxAddend]="myParams.maxAddend" [allowNegatives]="myParams.allowNegatives"
-      [twoDigitPlusOneDigit]="myParams.twoDigitPlusOneDigit"
-      [level] = "myParams.level"
-      (results)="showResults($event)"></app-math>
+  <app-math [mathType]="myParams.mathType" [minAddend]="myParams.minAddend"
+  [maxAddend]="myParams.maxAddend" [allowNegatives]="myParams.allowNegatives"
+  [twoDigitPlusOneDigit]="myParams.twoDigitPlusOneDigit"
+  [level] = "myParams.level"
+  (results)="showResults($event)"></app-math>
 </div>
-

@@ -1,18 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton } from '@ionic/angular/standalone';
-import { ResultsComponent } from '../results/results.component';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ProblemResults } from '../sharedModels/problem-results.model';
+import { IonButton } from "@ionic/angular/standalone";
+import { ResultsComponent } from '../results/results.component';
 
 @Component({
   selector: 'app-finished-results',
   templateUrl: './finished-results.page.html',
   styleUrls: ['./finished-results.page.scss'],
   standalone: true,
-  imports: [IonButton, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, ResultsComponent]
+  imports: [IonButton, ResultsComponent]
 })
+
 export class FinishedResultsPage implements OnInit {
   results: ProblemResults;
   constructor(private route: ActivatedRoute, private router: Router) { }

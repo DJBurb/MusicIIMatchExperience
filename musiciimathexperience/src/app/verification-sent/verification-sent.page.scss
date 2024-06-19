@@ -1,0 +1,27 @@
+.verification-container{
+  display: flex;
+  height: 80vh;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.verification-details{
+  display: flex;
+  flex-direction: column;
+  font-size: 1em;
+  div{
+    margin-bottom: 20px;
+    justify-content: center;
+  }
+}
+
+.verify-your-email{
+  font-weight: bold;
+  font-size: 2em;
+  display: flex;
+}
+
+ion-item{
+  background-color: transparent;
+}
