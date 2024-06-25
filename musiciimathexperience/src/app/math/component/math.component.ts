@@ -96,6 +96,7 @@ export class MathComponent  implements OnInit {
             correctAnswers: this.correctAnswers,
             wrongAnswers: this.wrongAnswers,
             mathType: this.mathType,
+            songFile: '',
             level: this.level
           })
       }

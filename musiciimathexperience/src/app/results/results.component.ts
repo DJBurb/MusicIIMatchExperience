@@ -11,16 +11,15 @@ import { IonContent, IonLabel } from "@ionic/angular/standalone";
 })
 export class ResultsComponent implements OnInit{
 
-  @Input() correctAnswers: number;
-  @Input() wrongAnswers: number;
+  @Input() correctAnswers: number=0;
+  @Input() wrongAnswers: number=0;
   totalAnswers: number;
 
   constructor() {
 
-   }
-  ngOnInit() {
+  }
+  ngOnInit(): void {
     this.totalAnswers = Number(this.correctAnswers) + Number(this.wrongAnswers);
   }
-
 
 }

@@ -78,6 +78,10 @@ const routes: Routes = [
   {
     path: 'level-12-skills',
     loadChildren: () => import('./level-skills/level-12-skills/level-12-skills.module').then( m => m.Level12SkillsPageModule)
+  },
+  {
+    path: 'level-selections',
+    loadChildren: () => import('./level-selections/level-selections.module').then( m => m.LevelSelectionsPageModule)
   }
 ];
 

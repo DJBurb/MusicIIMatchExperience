@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { Auth } from '@angular/fire/auth';
@@ -14,16 +14,12 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [IonToolbar, IonTitle, FormsModule, CommonModule,IonButton,IonHeader, IonText, IonInput, IonItem, IonLabel, IonInput, IonContent, IonText]
 })
-export class LoginPage implements OnInit {
+export class LoginPage {
 
   email: string;
   password: string;
-
   constructor(private authService: AuthService, private router: Router,
     private auth:Auth, private toastController:ToastController) { }
-
-  ngOnInit() {
-  }
 
   async login(){
 

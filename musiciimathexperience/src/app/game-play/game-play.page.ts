@@ -13,8 +13,8 @@ import { MathComponent } from '../math/component/math.component';
 export class GamePlayPage implements OnInit {
   myParams: any;
   mathType: number;
-  correctAnswers: number;
-  wrongAnswers: number;
+  correctAnswers: number=0;
+  wrongAnswers: number=0;
   constructor(private route: ActivatedRoute, private router:Router) {
 
   }
@@ -27,6 +27,7 @@ export class GamePlayPage implements OnInit {
 
   showResults(results:ProblemResults){
     results.level = this.myParams.level;
+    results.songFile = this.myParams.songFile;
     this.router.navigate(['finished-results', results])
   }
 

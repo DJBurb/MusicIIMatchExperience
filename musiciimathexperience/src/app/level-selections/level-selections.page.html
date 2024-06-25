@@ -1,0 +1,32 @@
+
+<ion-header>
+  <div class="title">
+    Music II Math Experience
+  </div>
+
+</ion-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="sub-header">
+    Choose a Math Level
+  </div>
+  <div class="level-grid-big">
+    <ion-grid>
+      <ion-row>
+        <ion-col *ngFor="let num of numbers" size="3">
+          <div class="circle" (click)="openLevelSkills(num)">{{ num }}</div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div class="level-grid-small">
+    <ion-grid>
+      <ion-row>
+        <ion-col *ngFor="let num of numbers" size="4">
+          <div class="circle" (click)="openLevelSkills(num)">{{ num }}</div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+
+</ion-content>
