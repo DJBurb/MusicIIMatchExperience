@@ -2,13 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ProblemResults } from '../sharedModels/problem-results.model';
 import { MathComponent } from '../math/component/math.component';
+import { CommonModule } from '@angular/common';
+import { IonButton } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-game-play',
   templateUrl: './game-play.page.html',
   styleUrls: ['./game-play.page.scss'],
   standalone: true,
-  imports: [MathComponent]
+  imports: [MathComponent, CommonModule, IonButton]
 })
 export class GamePlayPage implements OnInit {
   myParams: any;
@@ -29,6 +31,10 @@ export class GamePlayPage implements OnInit {
     results.level = this.myParams.level;
     results.songFile = this.myParams.songFile;
     this.router.navigate(['finished-results', results])
+  }
+
+  goToLevelSkillsMenu(){
+    this.router.navigate(['level-'+this.myParams.level+'-skills']);
   }
 
 }

@@ -1,50 +1,69 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ProblemResults } from '../sharedModels/problem-results.model';
-import { IonButton } from "@ionic/angular/standalone";
-import { ResultsComponent } from '../results/results.component';
+import { IonButton, IonLabel } from "@ionic/angular/standalone";
 import { AuthService } from '../auth.service';
 import { ViewDidEnter } from '@ionic/angular';
 import { FirestoreService } from '../firestore.service';
 import { CommonModule } from '@angular/common';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 
 @Component({
   selector: 'app-finished-results',
   templateUrl: './finished-results.page.html',
   styleUrls: ['./finished-results.page.scss'],
   standalone: true,
-  imports: [IonButton, ResultsComponent, CommonModule]
+  imports: [IonLabel, IonButton, CommonModule]
 })
 
 export class FinishedResultsPage implements ViewDidEnter {
-  results: ProblemResults;
+  //results: ProblemResults;
+  correctAnswers: string;
+  wrongAnswers: string;
+  songFile: string;
   songNumber: string;
+  level: string;
   songPieceNumber: string;
+  totalAnswers: number;
   showSongAdded: boolean;
   private audio: HTMLAudioElement;
 
-  constructor(private firestoreService:FirestoreService,private route: ActivatedRoute, private router: Router, private authService: AuthService) {
+  constructor(private firestoreService:FirestoreService,
+    private route: ActivatedRoute, private router: Router,
+    private authService: AuthService, private storage: AngularFireStorage) {
    }
 
-  ionViewDidEnter(): void {
-    this.route.params.subscribe(async (params: Params) =>{
-      this.results = params as ProblemResults;
-      const wrongAnswers= Number(this.results.wrongAnswers);
-      const songFileSplit = this.results.songFile.split("-");
-      this.songPieceNumber=songFileSplit[0];
-      this.songNumber =songFileSplit[1];
-      this.audio = new Audio('https://firebasestorage.googleapis.com/v0/b/math2musicexperience.appspot.com/o/Song%20'+this.songNumber+'%2F'+this.songNumber+'-'+this.songPieceNumber+'.mp3?alt=media');
-      if(wrongAnswers === 0){
-        const userId =  this.authService.user?.uid;
-        if (userId) {
-          await this.checkAndAddSong(userId, this.results.songFile);
+  async ionViewDidEnter(): Promise<void> {
+    this.correctAnswers=this.route.snapshot.paramMap.get('correctAnswers');
+    this.wrongAnswers= this.route.snapshot.paramMap.get('wrongAnswers');
+    this.songFile = this.route.snapshot.paramMap.get('songFile');
+    this.level = this.route.snapshot.paramMap.get('level');
+    const songFileSplit = this.songFile.split("-");
+    this.songPieceNumber=songFileSplit[1];
+    this.songNumber =songFileSplit[0];
+    this.totalAnswers = Number(this.correctAnswers) + Number(this.wrongAnswers);
+
+    if(this.wrongAnswers === "0"){
+      let filePath = "Song"+ this.songNumber +"/"+this.songNumber+'-'+this.songPieceNumber+'.mp3';
+      this.storage.ref(filePath).getDownloadURL().subscribe(
+        (url) => {
+          this.audio = new Audio(url);
+          console.log("Audio: ",this.audio);
+        },
+        (error) => {
+          console.error('Error getting download URL', error);
         }
+      );
+      const userId =  this.authService.user?.uid;
+      if (userId) {
+        await this.checkAndAddSong(userId, this.songFile);
       }
-    } );
+
+    }
   }
 
   goToLevelSkillsMenu(){
-    this.router.navigate(['level-'+this.results.level+'-skills']);
+    this.router.navigate(['level-'+this.level+'-skills']);
   }
 
   playSong(){

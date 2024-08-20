@@ -1,8 +1,16 @@
 
 <div class="game-play-container">
-  <app-math [mathType]="myParams.mathType" [minAddend]="myParams.minAddend"
-  [maxAddend]="myParams.maxAddend" [allowNegatives]="myParams.allowNegatives"
-  [twoDigitPlusOneDigit]="myParams.twoDigitPlusOneDigit"
-  [level] = "myParams.level"
-  (results)="showResults($event)"></app-math>
+    <app-math [mathType]="myParams.mathType" [minAddend]="myParams.minAddend"
+    [maxAddend]="myParams.maxAddend" [allowNegatives]="myParams.allowNegatives"
+    [numberOfProblems]="10"
+    [twoDigitPlusOneDigit]="myParams.twoDigitPlusOneDigit"
+    [level] = "myParams.level"
+    [isBigProblem] = "myParams.isBaseTen"
+    (results)="showResults($event)"></app-math>
+
+
+</div>
+
+<div class="return-to-menu">
+  <ion-button (click)="goToLevelSkillsMenu()">Return To Level {{myParams.level}} Menu</ion-button>
 </div>

@@ -1,13 +1,10 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>level-11-skills</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header [title]=title></app-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">level-11-skills</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
+  <app-skills-title [level]="'Level 11'"></app-skills-title>
+
+  <div class="back-to-main-menu">
+    <ion-button routerLink="/level-selections">Back To Main Menu</ion-button>
+  </div>
+<ion-content/>
+<app-tabs></app-tabs>

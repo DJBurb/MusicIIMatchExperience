@@ -6,7 +6,6 @@ import { IonicModule } from '@ionic/angular';
 
 import { Level12SkillsPageRoutingModule } from './level-12-skills-routing.module';
 
-import { Level12SkillsPage } from './level-12-skills.page';
 
 @NgModule({
   imports: [
@@ -14,7 +13,6 @@ import { Level12SkillsPage } from './level-12-skills.page';
     FormsModule,
     IonicModule,
     Level12SkillsPageRoutingModule
-  ],
-  declarations: [Level12SkillsPage]
+  ]
 })
 export class Level12SkillsPageModule {}

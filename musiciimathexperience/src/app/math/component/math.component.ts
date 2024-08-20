@@ -5,6 +5,7 @@ import { MathService } from '../service/math.service';
 import { MathProblem } from '../models/math-problem.model';
 import { CommonModule } from '@angular/common';
 import { ProblemResults } from 'src/app/sharedModels/problem-results.model';
+import { BaseTen100BlockComponent } from 'src/app/sharedComponents/base-ten-100-block/base-ten-100-block.component';
 
 @Component({
   selector: 'app-math',
@@ -16,7 +17,8 @@ import { ProblemResults } from 'src/app/sharedModels/problem-results.model';
     IonItem,
     IonLabel,
     IonToast,
-    CommonModule
+    CommonModule,
+    BaseTen100BlockComponent
   ]
 })
 export class MathComponent  implements OnInit {
@@ -28,6 +30,7 @@ export class MathComponent  implements OnInit {
   @Input() allowNegatives: boolean;
   @Input() twoDigitPlusOneDigit: boolean;
   @Input() level: number;
+  @Input() isBigProblem: boolean;
   @Output() results= new EventEmitter<ProblemResults>()
 
   problems: MathProblem[];

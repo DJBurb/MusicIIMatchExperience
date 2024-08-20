@@ -1,8 +1,4 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Select A Skill</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header [title]=title></app-header>
 
 <ion-content [fullscreen]="true">
   <app-skills-title [level]="'Level 1'"></app-skills-title>
@@ -11,21 +7,21 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col size="11" size-md="4">
+      <ion-col size="11" size-md="6">
         <ion-button expand="block" (click)="addOneDigit()">Addition (1 Digit Numbers)</ion-button>
         <ion-button expand="block" (click)="addTwoDigitPlusOneDigit()">Addition (2 Digit and 1 Numbers)</ion-button>
         <ion-button expand="block" (click)="addTwoDigit()">Addition (2 Digit Numbers)</ion-button>
-        <ion-button expand="block">Addition With Objects</ion-button>
+        <!-- <ion-button expand="block" (click)="baseTenAddition()">Base Ten Addtion</ion-button> -->
       </ion-col>
-      <ion-col size="11" size-md="4">
-        <ion-button expand="block">Find The Missing Number (1 Digit Numbers)</ion-button>
-        <ion-button expand="block">Subtraction (1 Digit Numbers)</ion-button>
-        <ion-button expand="block">Subtraction (2 Digit and 1 Numbers)</ion-button>
-        <ion-button expand="block">Subtraction (2 Digit Numbers)</ion-button>
+      <ion-col size="11" size-md="6">
+        <!-- <ion-button expand="block">Find The Missing Number (1 Digit Numbers)</ion-button> -->
+        <ion-button disabled="true" expand="block">Subtraction (1 Digit Numbers)</ion-button>
+        <ion-button disabled="true" expand="block">Subtraction (2 Digit and 1 Numbers)</ion-button>
+        <ion-button disabled="true" expand="block">Subtraction (2 Digit Numbers)</ion-button>
       </ion-col>
-      <ion-col size="11" size-md="4">
+      <!-- <ion-col size="11" size-md="4">
         <ion-button expand="block">Time</ion-button>
-      </ion-col>
+      </ion-col> -->
     </ion-row>
   </ion-grid>
 
@@ -65,4 +61,9 @@
       </div>
     </div>
   </div> -->
+  <div class="back-to-main-menu">
+    <ion-button routerLink="/level-selections">Back To Main Menu</ion-button>
+  </div>
 </ion-content>
+<app-tabs></app-tabs>
+

@@ -1,0 +1,17 @@
+.block-100 {
+ // Light gray color to resemble a block
+    .row {
+      display: flex;
+
+      .cell {
+        flex: 1;
+        border: 1px solid #000000;
+        background-color: #d72323; // Cells inside the block
+        width: 10px;
+        height: 10px;
+      }
+    }
+
+    margin: 10px;
+  }
+

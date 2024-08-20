@@ -14,7 +14,6 @@ import { Level3SkillsPage } from './level-3-skills.page';
     FormsModule,
     IonicModule,
     Level3SkillsPageRoutingModule
-  ],
-  declarations: [Level3SkillsPage]
+  ]
 })
 export class Level3SkillsPageModule {}
