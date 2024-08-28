@@ -16,15 +16,37 @@
           <div *ngIf="currentSongNumber === 0">
             <ion-grid >
               <ion-row>
-                <ion-col size="6" size-md="4" *ngFor="let song of songs; let i = index">
-                  <ion-button expand="block" (click)="displaySong(i + 1)">Song {{ i + 1 }}</ion-button>
+                <ion-col size="6" size-md="4" *ngFor="let song of songButtons; let i = index">
+                  <ion-button expand="block" (click)="displaySong(i + 1)">Go To Level {{ i + 1 }} Song</ion-button>
                 </ion-col>
               </ion-row>
             </ion-grid>
             <ion-button (click)="setOpen(false)">Close</ion-button>
           </div>
           <div *ngIf="currentSongNumber > 0">
-            <ion-button (click)="onBack()">Back</ion-button>
+            <div *ngFor="let song of visibleSongs">
+              <div>
+                Song {{song}}
+              </div>
+              <div>
+                <div class="play-button">
+                  <ion-button (click)="play(song)">Play</ion-button>
+                </div>
+
+              </div>
+            </div>
+            <div class="play-all-stop-button" *ngIf="visibleSongs.length>0">
+              <ion-button (click)="playAll()">Play All</ion-button>
+              <ion-button (click)="stopSong()">Stop</ion-button>
+
+            </div>
+            <div class="no-songs" *ngIf="visibleSongs.length<1">
+              You have not earned any songs on this level yet
+            </div>
+            <div class="back-button">
+              <ion-button (click)="onBack()">Back</ion-button>
+            </div>
+
           </div>
         </ion-content>
       </ng-template>

@@ -7,6 +7,7 @@ import { ViewDidEnter } from '@ionic/angular';
 import { FirestoreService } from '../firestore.service';
 import { CommonModule } from '@angular/common';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { PlaySongService } from '../play-song.service';
 
 @Component({
   selector: 'app-finished-results',
@@ -26,11 +27,10 @@ export class FinishedResultsPage implements ViewDidEnter {
   songPieceNumber: string;
   totalAnswers: number;
   showSongAdded: boolean;
-  private audio: HTMLAudioElement;
 
   constructor(private firestoreService:FirestoreService,
     private route: ActivatedRoute, private router: Router,
-    private authService: AuthService, private storage: AngularFireStorage) {
+    private authService: AuthService, private storage: AngularFireStorage, private playSongService: PlaySongService) {
    }
 
   async ionViewDidEnter(): Promise<void> {
@@ -38,27 +38,13 @@ export class FinishedResultsPage implements ViewDidEnter {
     this.wrongAnswers= this.route.snapshot.paramMap.get('wrongAnswers');
     this.songFile = this.route.snapshot.paramMap.get('songFile');
     this.level = this.route.snapshot.paramMap.get('level');
-    const songFileSplit = this.songFile.split("-");
-    this.songPieceNumber=songFileSplit[1];
-    this.songNumber =songFileSplit[0];
     this.totalAnswers = Number(this.correctAnswers) + Number(this.wrongAnswers);
 
     if(this.wrongAnswers === "0"){
-      let filePath = "Song"+ this.songNumber +"/"+this.songNumber+'-'+this.songPieceNumber+'.mp3';
-      this.storage.ref(filePath).getDownloadURL().subscribe(
-        (url) => {
-          this.audio = new Audio(url);
-          console.log("Audio: ",this.audio);
-        },
-        (error) => {
-          console.error('Error getting download URL', error);
-        }
-      );
       const userId =  this.authService.user?.uid;
       if (userId) {
         await this.checkAndAddSong(userId, this.songFile);
       }
-
     }
   }
 
@@ -67,14 +53,11 @@ export class FinishedResultsPage implements ViewDidEnter {
   }
 
   playSong(){
-    this.audio.play().catch(error => {
-      console.error('Error playing audio:', error);
-    });
+    this.playSongService.playSong(this.songFile);
   }
 
   stopSong() {
-    this.audio.pause();
-    this.audio.currentTime = 0; // Reset to beginning
+    this.playSongService.stopSong();
   }
 
   async checkAndAddSong(uid: string, songFileName: string): Promise<void> {
@@ -87,8 +70,6 @@ export class FinishedResultsPage implements ViewDidEnter {
           songs.push(songFileName);
           await this.firestoreService.updateUserSongs(uid, songs);
           this.showSongAdded =true;
-        } else {
-          console.log(`Song already exists: ${songFileName}`);
         }
       } else {
         await this.firestoreService.createUserDocument(uid, [songFileName]);
